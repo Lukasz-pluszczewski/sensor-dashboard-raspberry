@@ -1,0 +1,8 @@
+@import '../../styles/variables';
+
+.SensorsSection {
+  display: flex;
+  @include mobile {
+    flex-direction: column;
+  }
+}

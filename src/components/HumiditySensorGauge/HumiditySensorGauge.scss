@@ -1,0 +1,12 @@
+.HumiditySensorGauge {
+  position: relative;
+  width: 350px;
+  max-width: 100%;
+  .HumiditySensorGauge__label {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+}
