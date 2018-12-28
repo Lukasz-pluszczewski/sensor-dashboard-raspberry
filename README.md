@@ -1,4 +1,4 @@
-# Czarny Frontend Boilerplate 2
+# Sensor dashboard raspberry
 > Frontend boilerplate using create-react-app, ant design, redux and redux-breeze
 
 ### Environment variables
