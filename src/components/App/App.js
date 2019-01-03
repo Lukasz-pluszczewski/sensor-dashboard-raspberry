@@ -51,7 +51,7 @@ class App extends Component {
                 <Link to="/"><Icon type="home" />Home</Link>
               </Menu.Item>
               <Menu.Item key="websocket">
-                <Link to="/"><Icon type="home" />Websocket</Link>
+                <Link to="/websocket"><Icon type="home" />Websocket</Link>
               </Menu.Item>
             </Menu>
             <Button
