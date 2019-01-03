@@ -14,9 +14,9 @@ const HomePage = lazy(() => import(
   /* webpackChunkName: "HomePage" */
   '../../pages/HomePage'
 ));
-const ExamplePage = lazy(() => import(
-  /* webpackChunkName: "ExamplePage" */
-  '../../pages/ExamplePage'
+const WebsocketPage = lazy(() => import(
+  /* webpackChunkName: "WebsocketPage" */
+  '../../pages/WebsocketPage'
 ));
 
 class App extends Component {
@@ -50,6 +50,9 @@ class App extends Component {
               <Menu.Item key="home">
                 <Link to="/"><Icon type="home" />Home</Link>
               </Menu.Item>
+              <Menu.Item key="websocket">
+                <Link to="/"><Icon type="home" />Websocket</Link>
+              </Menu.Item>
             </Menu>
             <Button
               className="App__logout"
@@ -69,8 +72,8 @@ class App extends Component {
                 />
                 <Route
                   exact
-                  path="/example"
-                  component={ExamplePage}
+                  path="/websocket"
+                  component={WebsocketPage}
                 />
               </Switch>
             </Suspense>

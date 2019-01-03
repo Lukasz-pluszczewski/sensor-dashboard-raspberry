@@ -17,14 +17,16 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.getSensorData();
-    }, 2000);
+    socket(this.onSensorValueChange);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+  onSensorValueChange = (sensor, value) => {
+    if (sensor === 'temperature') {
+      this.props.setTemperature(value);
+    } else if (sensor === 'humidity') {
+      this.props.setHumidity(value);
+    }
+  };
 
   render() {
     return (
