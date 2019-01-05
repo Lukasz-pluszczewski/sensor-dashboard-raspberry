@@ -47,7 +47,7 @@ class PageLayout extends Component {
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            Sensors dashboard <span className="copyleft">©</span> 2018 Created by Łukasz Pluszczewski
+            Sensors dashboard <span className="copyleft">©</span> 2019 Created by Łukasz Pluszczewski
           </Footer>
         </Layout>
       </Layout>

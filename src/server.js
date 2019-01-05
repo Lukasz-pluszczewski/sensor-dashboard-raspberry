@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 5000;
 const apiUrl = process.env.API_URL;
+const proxyApiUrl = process.env.PROXY_API_URL;
 
 const app = express();
 app.server = http.createServer(app);
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.get('/api/config', (req, res) => {
   res.json({
     apiUrl,
+    proxyApiUrl,
   });
 });
 app.use(express.static(path.join(__dirname, '../build'), { fallthrough: true }));

@@ -19,9 +19,11 @@ if (process.env.REACT_APP_ENV !== 'production' && process.env.REACT_APP_WHYUPDAT
 
     if (config.apiUrl) {
       request.setApiUrl(config.apiUrl);
+      request.setProxyApiUrl(config.proxyApiUrl);
     } else {
-      const { apiUrl } = await request.makeExternalRequest('get', '/api/config');
+      const { apiUrl, proxyApiUrl } = await request.makeExternalRequest('get', '/api/config');
       request.setApiUrl(apiUrl);
+      request.setProxyApiUrl(proxyApiUrl);
     }
 
     ReactDOM.render(

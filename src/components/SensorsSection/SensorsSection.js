@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import HumiditySensorGauge from '../HumiditySensorGauge/HumiditySensorGauge';
+import HumiditySensorChart from '../HumiditySensorChart/HumiditySensorChart';
 import TempSensorGauge from '../TempSensorGauge/TempSensorGauge';
+import TempSensorChart from '../TempSensorChart/TempSensorChart';
 
 import './SensorsSection.scss';
 
@@ -10,6 +12,8 @@ class SensorsSection extends Component {
   static propTypes = {
     temperature: PropTypes.number,
     humidity: PropTypes.number,
+    temperatureHistory: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    humidityHistory: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
   };
 
   render() {
@@ -18,8 +22,16 @@ class SensorsSection extends Component {
 
     return (
       <div className="SensorsSection">
-        <HumiditySensorGauge value={humidity} label={`${humidity.toFixed(0)}%`} />
-        <TempSensorGauge value={temperature} label={`${temperature.toFixed(2)}º`}/>
+        <div className="SensorsSection__section">
+          <HumiditySensorGauge value={humidity} label={`${humidity.toFixed(0)}%`} />
+          <TempSensorGauge value={temperature} label={`${temperature.toFixed(2)}º`}/>
+        </div>
+        <div className="SensorsSection__section">
+          <TempSensorChart temperatureHistory={this.props.temperatureHistory} label="Temperature history"/>
+        </div>
+        <div className="SensorsSection__section">
+          <HumiditySensorChart humidityHistory={this.props.humidityHistory} label="Humidity history"/>
+        </div>
       </div>
     );
   }

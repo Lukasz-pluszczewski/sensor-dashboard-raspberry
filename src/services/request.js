@@ -6,6 +6,10 @@ const requestService = {
   setApiUrl: apiUrl => {
     requestService.apiUrl = apiUrl;
   },
+  proxyApiUrl: '',
+  setProxyApiUrl: proxyApiUrl => {
+    requestService.proxyApiUrl = proxyApiUrl;
+  },
   makeRequest: (method, path = '/', body = null, query = {}) => {
     if (!requestService.apiUrl) {
       return Promise.reject({ message: 'apiUrl has not been set' });
@@ -13,6 +17,31 @@ const requestService = {
     const queryString = qs.stringify(query);
 
     const request = new Request(`${requestService.apiUrl}${path}?${queryString}`, {
+      method,
+      body: _.isPlainObject(body) ? JSON.stringify(body) : body,
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json', // eslint-disable-line quote-props
+        'Content-Type': 'application/json',
+        'authentication': localStorage.getItem('password'), // eslint-disable-line quote-props
+      },
+    });
+
+    return fetch(request)
+      .then(response => (
+        response.status >= 200 && response.status < 300
+          ? Promise.resolve(response)
+          : Promise.reject(new Error(`Got ${response.status} status code`))
+      ))
+      .then(response => response.json());
+  },
+  makeProxyRequest: (method, path = '/', body = null, query = {}) => {
+    if (!requestService.proxyApiUrl) {
+      return Promise.reject({ message: 'proxyApiUrl has not been set' });
+    }
+    const queryString = qs.stringify(query);
+
+    const request = new Request(`${requestService.proxyApiUrl}${path}?${queryString}`, {
       method,
       body: _.isPlainObject(body) ? JSON.stringify(body) : body,
       credentials: 'include',
