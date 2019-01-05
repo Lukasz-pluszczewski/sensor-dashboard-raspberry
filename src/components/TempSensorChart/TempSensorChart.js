@@ -10,7 +10,7 @@ class TempSensorChart extends Component {
 
   render() {
     const data = this.props.temperatureHistory.map(el => ({
-      timestamp: moment(el.timestamp).format('DD-MM hh:mm'),
+      timestamp: moment(el.timestamp).format('DD-MM HH:mm'),
       value: parseFloat(el.value.toFixed(2)),
     }));
 
