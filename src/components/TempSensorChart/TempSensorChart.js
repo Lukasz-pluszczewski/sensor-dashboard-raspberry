@@ -27,7 +27,7 @@ class TempSensorChart extends Component {
             <XAxis dataKey="timestamp" />
             <YAxis domain={['dataMin - 3', 'dataMax + 3']} />
             <Tooltip />
-            <Legend />
+            {/*<Legend />*/}
             <Line type="monotone" dataKey="value" stroke="#8884d8" dot={false} />
           </LineChart>
         </ResponsiveContainer>

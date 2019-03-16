@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import Gauge from '../Gauge/Gauge';
 
 import './TempSensorGauge.scss';
+
+const todayFormat = 'HH:mm';
+const genericFormat = 'YYYY.MM.DD';
 
 class TempSensorGauge extends Component {
   static propTypes = {
     max: PropTypes.number,
     value: PropTypes.number,
     label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    date: PropTypes.string,
   };
 
   render() {
+    const date = moment(this.props.date);
+    const isToday = date.isSame(moment(), 'day');
+    const displayDate = date.format(isToday ? todayFormat : genericFormat);
+
     return (
       <div className="TempSensorGauge">
         <Gauge
@@ -36,7 +45,14 @@ class TempSensorGauge extends Component {
             ],
           }}
         />
-        <div className="TempSensorGauge__label">{this.props.label}</div>
+        <div className="TempSensorGauge__labelContainer">
+          <div className="TempSensorGauge__label">
+            {this.props.label}
+          </div>
+        </div>
+        <div className="TempSensorGauge__date">
+          {displayDate}
+        </div>
       </div>
     );
   }

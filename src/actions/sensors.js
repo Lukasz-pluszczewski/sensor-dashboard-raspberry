@@ -16,14 +16,18 @@ const actionsDefinitions = {
   },
   getSensorHistory: {
     type: 'better-promise',
-    async: (start, end) => request.makeProxyRequest('GET', `/sensors`, null, { start, end }),
+    async: ({ start, end }) => request.makeProxyRequest('GET', `/sensors`, null, { start, end }),
     initial: {
       temperatureHistory: [],
       humidityHistory: [],
+      temperature2History: [],
+      humidity2History: [],
     },
     result: {
       temperatureHistory: 'result.temperature',
       humidityHistory: 'result.humidity',
+      temperature2History: 'result.temperature2',
+      humidity2History: 'result.humidity2',
     },
   },
   setTemperature: {

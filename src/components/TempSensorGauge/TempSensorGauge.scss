@@ -2,11 +2,16 @@
   position: relative;
   width: 350px;
   max-width: 100%;
-  .TempSensorGauge__label {
+  display: flex;
+  flex-direction: column;
+  .TempSensorGauge__labelContainer {
     position: absolute;
     top: 45px;
     left: 0;
     right: 0;
     text-align: center;
+  }
+  .TempSensorGauge__date {
+    margin: 0 auto;
   }
 }

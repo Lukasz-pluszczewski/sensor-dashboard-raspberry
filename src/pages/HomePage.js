@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import config from '../config';
-import socket from '../services/socketService';
 import { getAction, connect } from '../services/reduxBreeze';
 
 import SensorsSection from '../components/SensorsSection/SensorsSection';
@@ -20,14 +20,12 @@ class HomePage extends Component {
     humidity: PropTypes.number,
     temperatureHistory: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
     humidityHistory: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    temperature2History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    humidity2History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
   };
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.getSensorData();
-    }, 2000);
-
-    this.props.getSensorHistory(config.defaultStartDateForCharts.toISOString());
+    this.props.getSensorHistory({ start: config.defaultStartDateForCharts.toISOString() });
   }
 
   componentWillUnmount() {
@@ -43,14 +41,15 @@ class HomePage extends Component {
     return (
       <Layout
         sider={null}
-        breadcrumbs={['Home']}
       >
-        <DatePicker default={config.defaultStartDateForCharts} onChange={this.handleDateChange} />
+        <DatePicker default={moment(config.defaultStartDateForCharts)} onChange={this.handleDateChange} />
         <SensorsSection
           temperature={this.props.temperature}
           humidity={this.props.humidity}
           temperatureHistory={this.props.temperatureHistory}
           humidityHistory={this.props.humidityHistory}
+          temperature2History={this.props.temperature2History}
+          humidity2History={this.props.humidity2History}
         />
       </Layout>
     );
@@ -63,6 +62,8 @@ export default connect(
     humidity: 'sensors.humidity',
     humidityHistory: 'sensors.humidityHistory',
     temperatureHistory: 'sensors.temperatureHistory',
+    humidity2History: 'sensors.humidity2History',
+    temperature2History: 'sensors.temperature2History',
   },
   {
     getSensorData: getAction('getSensorData'),
