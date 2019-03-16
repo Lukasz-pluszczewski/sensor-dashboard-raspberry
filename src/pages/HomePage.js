@@ -34,7 +34,7 @@ class HomePage extends Component {
 
   handleDateChange = date => {
     const isoDate = date.startOf('day').toISOString();
-    this.props.getSensorHistory(isoDate);
+    this.props.getSensorHistory({ start: isoDate });
   };
 
   render() {
