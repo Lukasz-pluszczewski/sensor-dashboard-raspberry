@@ -22,6 +22,10 @@ class HomePage extends Component {
     humidityHistory: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
     temperature2History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
     humidity2History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    temperature3History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    humidity3History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    temperature4History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
+    humidity4History: PropTypes.arrayOf(PropTypes.shape({ timestamp: PropTypes.string, value: PropTypes.number })),
   };
 
   componentDidMount() {
@@ -50,6 +54,10 @@ class HomePage extends Component {
           humidityHistory={this.props.humidityHistory}
           temperature2History={this.props.temperature2History}
           humidity2History={this.props.humidity2History}
+          temperature3History={this.props.temperature3History}
+          humidity3History={this.props.humidity3History}
+          temperature4History={this.props.temperature4History}
+          humidity4History={this.props.humidity4History}
         />
       </Layout>
     );
@@ -64,6 +72,10 @@ export default connect(
     temperatureHistory: 'sensors.temperatureHistory',
     humidity2History: 'sensors.humidity2History',
     temperature2History: 'sensors.temperature2History',
+    humidity3History: 'sensors.humidity3History',
+    temperature3History: 'sensors.temperature3History',
+    humidity4History: 'sensors.humidity4History',
+    temperature4History: 'sensors.temperature4History',
   },
   {
     getSensorData: getAction('getSensorData'),
